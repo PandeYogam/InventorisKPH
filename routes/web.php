@@ -14,5 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home' , [
+        'title' => 'Dashboard'
+    ]);
 });
+
+Route::get('/login', function () {
+    return view('login', [
+        "title" => "login",
+        "name" => "Kuta Paradiso Hotel",
+        "email" => "KPH haha",
+        "image" => "KPH.jpg",
+    ]);
+});
+
+Route::get('/inventoris', function () {
+    return view('inventoris', [
+        'title' => "inventoris",
+    ]);
+});
+
