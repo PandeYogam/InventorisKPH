@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1>login</h1>
+    <h1>History</h1>
 @endsection
