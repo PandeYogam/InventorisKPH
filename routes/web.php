@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\DataBarang;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Home
 Route::get('/', function () {
     return view('home' , [
         'title' => 'Home'
     ]);
 });
 
+//Login
 Route::get('/login', function () {
     return view('login', [
         "title" => "login",
@@ -28,75 +32,13 @@ Route::get('/login', function () {
     ]);
 });
 
-$barang_inventaris = [
-    [
-        "id_barang" => 1,
-        "Nama_Barang" => "Komputer 1",
-        "Jumlah_Barang" => 1,
-        "Kondisi_Barang" => "Layak Pakai",
-    ],
-    [
-        "id_barang" => 2,
-        "Nama_Barang" => "Komputer 2",
-        "Jumlah_Barang" => 1,
-        "Kondisi_Barang" => "Rusak",
-    ],
-];
+//inventoris
+Route::get('/inventoris', [DataBarangController::class, 'index']);
 
-Route::get('/inventoris', function () {
-    $barang_inventaris = [
-        [
-            "id_barang" => 1,
-            "Nama_Barang" => "Komputer 1",
-            "Jumlah_Barang" => 1,
-            "Kondisi_Barang" => "Layak Pakai",
-        ],
-        [
-            "id_barang" => 2,
-            "Nama_Barang" => "Komputer 2",
-            "Jumlah_Barang" => 1,
-            "Kondisi_Barang" => "Rusak",
-        ],
-    ];
+//detail inventoris
+Route::get('/databarang/{id_barang}', [DataBarangController::class, 'show']);
 
-    return view('inventoris', [
-        'title' => "Inventoris",
-        'data_inventaris' => $barang_inventaris,
-    ]);
-});
-
-Route::get('/databarang/{id_barang}', function ($id_barang) {
-    $barang_inventaris = [
-        [
-            "id_barang" => 1,
-            "Nama_Barang" => "Komputer 1",
-            "Jumlah_Barang" => 1,
-            "Kondisi_Barang" => "Layak Pakai",
-        ],
-        [
-            "id_barang" => 2,
-            "Nama_Barang" => "Komputer 2",
-            "Jumlah_Barang" => 1,
-            "Kondisi_Barang" => "Rusak",
-        ],
-    ];
-
-    $new_data_barang = [];
-    foreach ($barang_inventaris as $barang) {
-        if ($barang['id_barang'] == $id_barang) {
-            $new_data_barang = $barang;
-        }
-    }
-
-    return view('databarang', [
-        'title' => "Data barang",
-        'barang' => $new_data_barang
-    ]);
-});
-
-
-
-
+//history CRUD
 Route::get('/history', function () {
     return view('history', [
         'title' => "History",
