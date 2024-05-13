@@ -15,7 +15,7 @@ class DataBarangController extends Controller
     {
         return view('inventoris', [
             'title' => "Inventoris",
-            'data_inventaris' => DataBarang::all(),
+            // 'data_inventaris' => DataBarang::all(),
         ]);
     }
 
@@ -38,11 +38,11 @@ class DataBarangController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id_barang)
+    public function show(DataBarang $dataBarang)
     {
         return view('databarang', [
             'title' => "Data barang",
-            'barang' => DataBarang::find($id_barang)
+            'barang' => $dataBarang,
         ]);
     }
 

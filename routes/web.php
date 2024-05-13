@@ -36,7 +36,7 @@ Route::get('/login', function () {
 Route::get('/inventoris', [DataBarangController::class, 'index']);
 
 //detail inventoris
-Route::get('/databarang/{id_barang}', [DataBarangController::class, 'show']);
+Route::get('/databarang/{DataBarang}', [DataBarangController::class, 'show']);
 
 //history CRUD
 Route::get('/history', function () {
